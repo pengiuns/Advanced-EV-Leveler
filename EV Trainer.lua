@@ -29,7 +29,7 @@ function onPathAction()
 	if isPokemonUsable(1) then
         if not isTrainingMap() then
         	if trainlist[getPokemonName(1)][1] == "Hp" then
-            	moveTo(Hp[1])
+            	moveTo("Virdian Forest")
         	elseif trainlist[getPokemonName(1)][1] == "Atk" then
             	moveTo(Atk[1])
             elseif trainlist[getPokemonName(1)][1] == "Def" then

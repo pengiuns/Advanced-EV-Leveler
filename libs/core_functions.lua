@@ -32,6 +32,14 @@ function isFullyTrained(name)
 	end
 end
 
+function isTrainingMap()
+    if getMapName() == "Viridian Forest" or getMapName() == "" or getMapName() == "" or getMapName() == "" or getMapName() == "" or getMapName() =="" then
+        return true
+    else
+        return false
+    end
+end
+
 -- start declare
 trainlist = {}
 if #Train_Hp != 0 then
