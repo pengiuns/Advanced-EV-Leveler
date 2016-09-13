@@ -27,7 +27,6 @@ function isFullyTrained(index)
 	end
 end
 
-<<<<<<< HEAD
 -- start declare
 trainlist = {}
 -- end declare
@@ -98,4 +97,3 @@ function isOpponentCorrect()
 	return false
 	
 end
->>>>>>> refs/remotes/origin/master
