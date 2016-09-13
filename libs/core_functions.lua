@@ -6,3 +6,24 @@ function pokemonNameIndex(name)
 		end
 	end
 end
+
+-- STATS: "HP" , "ATK" , "DEF" , "SPATK" , "SPDEF" , "SPD"
+
+-- isEvDone(Hp[1], "HP")
+function isEvDone(index, stat)
+	if PokemonGetEffortValue(index, stat) == 252 then
+		return true
+	else
+		return false
+	end
+end
+
+-- 2x 252 + 5 ( need recheck )
+function isFullyTrained(index)
+	if getPokemonEffortValue(index, "HP") + getPokemonEffortValue(index, "ATK") + getPokemonEffortValue(index, "DEF") + getPokemonEffortValue(index, "SPATK") + getPokemonEffortValue(index, "SPDEF") + getPokemonEffortValue(index, "SPD") == 509 then
+		return true
+	else
+		return false
+	end
+end
+
