@@ -95,37 +95,37 @@ end
 function convertTables()
 
 	for i=1, #Train_Hp do
-		log("Assign: "..Train_Hp[i])
+		log("Assign: "..Train_Hp[i].." @HP")
 		table.insert (trainlist[Train_Hp[i]], "Hp")
 		
 	end
 	
 	for i=1, #Train_Atk do
-		log("Assign: "..Train_Atk[i])
+		log("Assign: "..Train_Atk[i].." @ATK")
 		table.insert (trainlist[Train_Atk[i]], "Atk")
 		
 	end
 	
 	for i=1, #Train_Def do
-		log("Assign: "..Train_Def[i])
+		log("Assign: "..Train_Def[i].." @DEF")
 		table.insert (trainlist[Train_Def[i]], "Def")
 		
 	end
 	
 	for i=1, #Train_Spd do
-		log("Assign: "..Train_Spd[i])
+		log("Assign: "..Train_Spd[i] .." @SPD")
 		table.insert (trainlist[Train_Spd[i]], "Spd")
 		
 	end
 
 	for i=1, #Train_SpAtk do
-		log("Assign: "..Train_SpAtk[i])
+		log("Assign: "..Train_SpAtk[i] .." @SPATK")
 		table.insert (trainlist[Train_SpAtk[i]], "SpAtk")
 		
 	end
 
 	for i=1, #Train_SpDef do
-		log("Assign: "..Train_SpDef[i])
+		log("Assign: "..Train_SpDef[i] .." @SPDEF")
 		table.insert (trainlist[Train_SpDef[i]], "SpDef")
 		
 	end
