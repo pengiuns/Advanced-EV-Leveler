@@ -32,15 +32,19 @@ function isFullyTrained(name)
 	end
 end
 
+
 -- start declare
 trainlist = {}
+for i=1, #Train_Hp do
+	name = Train_Hp[i]
+	trainlist[name] = {}
+end
 -- end declare
 
 -- converting config to training table's keys and values
 function convertTables()
 
 	for i=1, #Train_Hp do
-	
 		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "HP")
 		
 	end
