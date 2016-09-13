@@ -81,37 +81,37 @@ end
 function convertTables()
 
 	for i=1, #Train_Hp do
-		table.insert (trainlist[Train_Hp[i]], "HP")
+		table.insert (trainlist[Train_Hp[i]], "Hp")
 		
 	end
 	
 	for i=1, #Train_Atk do
 	
-		table.insert (trainlist[Train_Hp[i]], "Attack")
+		table.insert (trainlist[Train_Hp[i]], "Atk")
 		
 	end
 	
 	for i=1, #Train_Def do
 	
-		table.insert (trainlist[Train_Hp[i]], "Defense")
+		table.insert (trainlist[Train_Hp[i]], "Def")
 		
 	end
 	
 	for i=1, #Train_Spd do
 	
-		table.insert (trainlist[Train_Hp[i]], "Speed")
+		table.insert (trainlist[Train_Hp[i]], "Spd")
 		
 	end
 
 	for i=1, #Train_SpAtk do
 	
-		table.insert (trainlist[Train_Hp[i]], "Spattack")
+		table.insert (trainlist[Train_Hp[i]], "SpAtk")
 		
 	end
 
 	for i=1, #Train_SpDef do
 	
-		table.insert (trainlist[Train_Hp[i]], "Spdefense")
+		table.insert (trainlist[Train_Hp[i]], "SpDef")
 		
 	end
 	

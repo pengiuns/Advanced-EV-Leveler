@@ -28,10 +28,18 @@ end
 function onPathAction()
 	if isPokemonUsable(1) then
         if not isTrainingMap() then
-        	if trainlist[getPokemonName(1)][1] == "HP" then
+        	if trainlist[getPokemonName(1)][1] == "Hp" then
             	moveTo(Hp[1])
-        	elseif trainlist[getPokemonName(1)][1] == "DEF" then
+        	elseif trainlist[getPokemonName(1)][1] == "Atk" then
+            	moveTo(Atk[1])
+            elseif trainlist[getPokemonName(1)][1] == "Def" then
             	moveTo(Def[1])
+            elseif trainlist[getPokemonName(1)][1] == "Spd" then
+            	moveTo(Spd[1])
+            elseif trainlist[getPokemonName(1)][1] == "SpAtk" then
+            	moveTo(SpAtk[1])
+            elseif trainlist[getPokemonName(1)][1] == "SpDef" then
+            	moveTo(SpDef[1])
             end
         end -- etc etc
     end
