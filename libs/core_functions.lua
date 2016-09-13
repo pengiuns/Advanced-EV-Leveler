@@ -27,6 +27,7 @@ function isFullyTrained(index)
 	end
 end
 
+<<<<<<< HEAD
 -- start declare
 trainlist = {}
 -- end declare
@@ -82,3 +83,19 @@ function getTrainlist(name)
 	end
 
 end
+=======
+-- use only onBattleAction
+function isOpponentCorrect()
+	
+	for i=1, #trainlist[getPokemonName(getActivePokemonNumber())] do
+		
+		if isOpponentEffortValue(trainlist[getPokemonName(getActivePokemonNumber())]) then
+			return true
+		end
+		
+	end
+	
+	return false
+	
+end
+>>>>>>> refs/remotes/origin/master
