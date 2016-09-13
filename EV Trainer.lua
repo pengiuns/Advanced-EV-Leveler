@@ -7,9 +7,11 @@ function onStart()
  	dofile 'config.lua'
  	dofile 'libs/logs.lua'
  	dofile 'libs/EV_KantoMap.lua'
-
+	
 	log("EV Trainer | Welcome")
 	getStartLogs()
+	
+	convertTables()
 
 end
 
@@ -27,7 +29,9 @@ function onPathAction()
 end
 
 function onBattleAction()
-
+	if isOpponentCorrect() then
+		return attack() or sendUsablePokemon() or run()
+	end
 end
 
 function onDialogMessage(message)
