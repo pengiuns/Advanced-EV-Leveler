@@ -7,7 +7,7 @@ function pokemonNameIndex(name)
 	end
 end
 
--- STATS: "HP" , "ATK" , "DEF" , "SPATK" , "SPDEF" , "SPD"
+-- STATS: "HP" , "Attack" , "Defense" , "Spattack" , "Spdefense" , "Speed"
 
 -- isEvDone(Hp[1], "HP")
 function isEvDone(index, stat)
@@ -27,32 +27,58 @@ function isFullyTrained(index)
 	end
 end
 
-
--- declaring training table
+-- start declare
 trainlist = {}
--- end declaration
+-- end declare
 
--- config EV training check
-function getTrainlist()
+-- converting config to training table's keys and values
+function convertTables()
+
+	for i=1, #Train_Hp do
 	
-    	if trainSPD == true then
-        	table.insert (trainlist, #trainlist+1, "SPD")
-    	end
-    	if trainHP == true then
-        	table.insert (trainlist, #trainlist+1, "HP")
-   	end
-	if trainATK == true then
-		table.insert (trainlist, #trainlist+1, "ATK")
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "HP")
+		
 	end
-	if trainSPATK == true then
-		table.insert (trainlist, #trainlist+1, "SPATK")
+	
+	for i=1, #Train_Atk do
+	
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "Attack")
+		
 	end
-	if trainSPDEF == true then
-		table.insert (trainlist, #trainlist+1, "SPDEF")
+	
+	for i=1, #Train_Def do
+	
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "Defense")
+		
 	end
-	if trainDEF == true then
-		table.insert (trainlist, #trainlist+1, "DEF")
+	
+	for i=1, #Train_Spd do
+	
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "Speed")
+		
 	end
-    
+
+	for i=1, #Train_SpAtk do
+	
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "Spattack")
+		
+	end
+
+	for i=1, #Train_SpDef do
+	
+		table.insert (trainlist[Train_Hp[i]], #trainlist+1, "Spdefense")
+		
+	end
+	
 end
 
+
+function getTrainlist(name)
+	EVtrain = {}
+	for i=1, #trainlist[name] do
+		
+		EVtrain[i] = trainlist[name][i]
+		
+	end
+
+end
