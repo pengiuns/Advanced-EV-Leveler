@@ -26,7 +26,15 @@ function onResume()
 end
 
 function onPathAction()
-
+	if isPokemonUsable(1) then
+        if not isTrainingMap() then
+        	if trainlist[getPokemonName(1)][1] == "HP" then
+            	moveTo(Hp[1])
+        	elseif trainlist[getPokemonName(1)][1] == "DEF" then
+            	moveTo(Def[1])
+            end
+        end -- etc etc
+    end
 end
 
 function onBattleAction()
