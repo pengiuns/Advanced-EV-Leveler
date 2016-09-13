@@ -31,6 +31,8 @@ end
 function onBattleAction()
 	if isOpponentCorrect() then
 		return attack() or sendUsablePokemon() or run()
+	else
+		return run() or sendUsablePokemon()
 	end
 end
 
