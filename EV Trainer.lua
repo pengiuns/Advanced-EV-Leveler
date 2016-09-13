@@ -6,7 +6,8 @@ Import_Essentials = require "pathfind/Maps_Pathfind"
 function onStart()
  	dofile 'config.lua'
  	dofile 'libs/logs.lua'
- 	dofile 'libs/EV_KantoMap.lua'
+ 	dofile 'libs/EV-KantoMap.lua'
+ 	dofile 'libs/core_functions.lua'
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()
