@@ -27,3 +27,17 @@ function isFullyTrained(index)
 	end
 end
 
+-- use only onBattleAction
+function isOpponentCorrect()
+	
+	for i=1, #trainlist[getPokemonName(getActivePokemonNumber())] do
+		
+		if isOpponentEffortValue(trainlist[getPokemonName(getActivePokemonNumber())]) then
+			return true
+		end
+		
+	end
+	
+	return false
+	
+end
