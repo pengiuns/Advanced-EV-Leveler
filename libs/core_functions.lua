@@ -10,8 +10,8 @@ end
 -- STATS: "HP" , "Attack" , "Defense" , "Spattack" , "Spdefense" , "Speed"
 
 -- isEvDone(Hp[1], "HP")
-function isEvDone(index, stat)
-	if getPokemonEffortValue(index, stat) == 252 then
+function isEvDone(name, stat)
+	if getPokemonEffortValue(pokemonNameIndex(name), stat) == 252 then
 		return true
 	else
 		return false
