@@ -11,7 +11,7 @@ end
 
 -- isEvDone(Hp[1], "HP")
 function isEvDone(index, stat)
-	if PokemonGetEffortValue(index, stat) == 252 then
+	if getPokemonEffortValue(index, stat) == 252 then
 		return true
 	else
 		return false
@@ -25,5 +25,34 @@ function isFullyTrained(index)
 	else
 		return false
 	end
+end
+
+
+-- declaring training table
+trainlist = {}
+-- end declaration
+
+-- config EV training check
+function getTrainlist()
+	
+    	if trainSPD == true then
+        	table.insert (trainlist, #trainlist+1, "SPD")
+    	end
+    	if trainHP == true then
+        	table.insert (trainlist, #trainlist+1, "HP")
+   	end
+	if trainATK == true then
+		table.insert (trainlist, #trainlist+1, "ATK")
+	end
+	if trainSPATK == true then
+		table.insert (trainlist, #trainlist+1, "SPATK")
+	end
+	if trainSPDEF == true then
+		table.insert (trainlist, #trainlist+1, "SPDEF")
+	end
+	if trainDEF == true then
+		table.insert (trainlist, #trainlist+1, "DEF")
+	end
+    
 end
 
