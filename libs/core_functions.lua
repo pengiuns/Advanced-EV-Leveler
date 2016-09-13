@@ -82,7 +82,7 @@ function getTrainlist(name)
 	end
 
 end
-=======
+
 -- use only onBattleAction
 function isOpponentCorrect()
 	
