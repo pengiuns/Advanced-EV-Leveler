@@ -30,15 +30,15 @@ function onPathAction()
         	if trainlist[getPokemonName(1)][1] == "Hp" then
             	moveTo("Virdian Forest")
         	elseif trainlist[getPokemonName(1)][1] == "Atk" then
-            	moveTo(Atk[1])
+            	moveTo("")
             elseif trainlist[getPokemonName(1)][1] == "Def" then
-            	moveTo(Def[1])
+            	moveTo("")
             elseif trainlist[getPokemonName(1)][1] == "Spd" then
-            	moveTo(Spd[1])
+            	moveTo("")
             elseif trainlist[getPokemonName(1)][1] == "SpAtk" then
-            	moveTo(SpAtk[1])
+            	moveTo("")
             elseif trainlist[getPokemonName(1)][1] == "SpDef" then
-            	moveTo(SpDef[1])
+            	moveTo("")
             end
         end -- etc etc
     end

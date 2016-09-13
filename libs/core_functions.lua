@@ -45,12 +45,14 @@ trainlist = {}
 if #Train_Hp != 0 then
 	for i=1, #Train_Hp do
 		name = Train_Hp[i]
+		log("HP: "..name)
 		trainlist[name] = {}
 	end
 end
 if #Train_Spd != 0 then
 	for i=1, #Train_Spd do
 		name = Train_Spd[i]
+		log("Spd: "..name)
 		trainlist[name] = {}
 	end
 end
@@ -58,6 +60,7 @@ end
 if #Train_Atk != 0 then
 	for i=1, #Train_Atk do
 		name = Train_Atk[i]
+		log("Atk: "..name)
 		trainlist[name] = {}
 	end
 end
@@ -65,6 +68,7 @@ end
 if #Train_Def != 0 then
 	for i=1, #Train_Def do
 		name = Train_Def[i]
+		log("Def: "..name)
 		trainlist[name] = {}
 	end
 end
@@ -72,6 +76,7 @@ end
 if #Train_SpAtk != 0 then
 	for i=1, #Train_SpAtk do
 		name = Train_SpAtk[i]
+		log("SpAtk: "..name)
 		trainlist[name] = {}
 	end
 end
@@ -79,6 +84,7 @@ end
 if #Train_SpDef != 0 then
 	for i=1, #Train_SpDef do
 		name = Train_SpDef[i]
+		log("SpDef: "..name)
 		trainlist[name] = {}
 	end
 end
@@ -89,37 +95,38 @@ end
 function convertTables()
 
 	for i=1, #Train_Hp do
+		log("Assign: "..Train_Hp[i])
 		table.insert (trainlist[Train_Hp[i]], "Hp")
 		
 	end
 	
 	for i=1, #Train_Atk do
-	
-		table.insert (trainlist[Train_Hp[i]], "Atk")
+		log("Assign: "..Train_Atk[i])
+		table.insert (trainlist[Train_Atk[i]], "Atk")
 		
 	end
 	
 	for i=1, #Train_Def do
-	
-		table.insert (trainlist[Train_Hp[i]], "Def")
+		log("Assign: "..Train_Def[i])
+		table.insert (trainlist[Train_Def[i]], "Def")
 		
 	end
 	
 	for i=1, #Train_Spd do
-	
-		table.insert (trainlist[Train_Hp[i]], "Spd")
+		log("Assign: "..Train_Spd[i])
+		table.insert (trainlist[Train_Spd[i]], "Spd")
 		
 	end
 
 	for i=1, #Train_SpAtk do
-	
-		table.insert (trainlist[Train_Hp[i]], "SpAtk")
+		log("Assign: "..Train_SpAtk[i])
+		table.insert (trainlist[Train_SpAtk[i]], "SpAtk")
 		
 	end
 
 	for i=1, #Train_SpDef do
-	
-		table.insert (trainlist[Train_Hp[i]], "SpDef")
+		log("Assign: "..Train_SpDef[i])
+		table.insert (trainlist[Train_SpDef[i]], "SpDef")
 		
 	end
 	
