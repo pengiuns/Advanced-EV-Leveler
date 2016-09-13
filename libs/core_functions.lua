@@ -19,8 +19,13 @@ function isEvDone(name, stat)
 end
 
 -- 2x 252 + 5 ( need recheck )
-function isFullyTrained(index)
-	if getPokemonEffortValue(index, "HP") + getPokemonEffortValue(index, "ATK") + getPokemonEffortValue(index, "DEF") + getPokemonEffortValue(index, "SPATK") + getPokemonEffortValue(index, "SPDEF") + getPokemonEffortValue(index, "SPD") == 509 then
+function isFullyTrained(name)
+	if 	getPokemonEffortValue(pokemonNameIndex(name), "HP") + 
+		getPokemonEffortValue(pokemonNameIndex(name), "ATK") + 
+		getPokemonEffortValue(pokemonNameIndex(name), "DEF") + 
+		getPokemonEffortValue(pokemonNameIndex(name), "SPATK") + 
+		getPokemonEffortValue(pokemonNameIndex(name), "SPDEF") + 
+		getPokemonEffortValue(pokemonNameIndex(name), "SPD") == 509 then
 		return true
 	else
 		return false
