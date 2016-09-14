@@ -1,6 +1,4 @@
--- ToDo: Add nearest Pokecenters
-
-Hp = {"Viridian Forest", {"Caterpie", "Hoothoot"}}
+Hp = {"Viridian Forest", {"Caterpie", "Hoothoot"}, "Pokecenter Viridian"}
 Atk = {"Route 12", {"Bellsprout", "Weepinbell"}}
 Def = {"Viridian Forest", {"Metapod", "Kakuna"}}
 Spd = {"Diglett Cave", {"Zubat", "Diglett", "Dugtrio"}}
