@@ -9,6 +9,7 @@ function onStart()
 	dofile 'libs/KantoEvMap.lua'
  	dofile 'libs/core_functions.lua'
 	dofile 'libs/path_functions.lua'
+	dofile 'libs/battle_functions.lua'
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()
@@ -33,6 +34,7 @@ function onResume()
 end
 
 function onPathAction()
+
 	-- start Hp Training
 	if TrainHp ~= 0 then
 		startHpTraining()
@@ -59,15 +61,31 @@ end
 
 function onBattleAction()
 	
-	if isPokemonUsable(1) then
-		if isTrainingMap() then
-			logging = loggin - 1
-			-- Battle conditions for specific EV Type
-		else
-			return run()
+	if isTrainingMap() then
+		-- start Hp Training
+		if TrainHp ~= 0 then
+			gainHp()
+		-- start Atk Training
+		elseif TrainHp == 0 and TrainAtk ~= 0 then
+			gainAtk()
+		-- Start Def Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
+			gainDef()
+		-- Start Spd Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
+			gainSpd()
+		-- Start SpAtk Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
+			gainSpAtk()
+		-- Start SpDef Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
+			gainSpDef()
+		-- Finished all Trainings
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
+			fatal("Ev Trainer | Something went wrong !")
 		end
 	else
-		return run() or sendUsablePokemon() or sendAnyPokemon()
+		return run()
 	end
 	
 end
