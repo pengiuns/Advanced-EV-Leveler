@@ -58,12 +58,18 @@ function onPathAction()
 end
 
 function onBattleAction()
-	if not isTrainingMap() then
-		return run()
+	
+	if isPokemonUsable(1) then
+		if isTrainingMap() then
+			logging = loggin - 1
+			-- Battle conditions for specific EV Type
+		else
+			return run()
+		end
 	else
-		logging = logging -1
-		return run()
+		return run() or sendUsablePokemon() or sendAnyPokemon()
 	end
+	
 end
 
 function onDialogMessage(message)
