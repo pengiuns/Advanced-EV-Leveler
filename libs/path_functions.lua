@@ -1,22 +1,28 @@
 logging = 0
 
 function startHpTraining()
-	if getPokemonName(1) ~= Train_Hp[TrainHp] then
-		swapPokemonWithLeader(Train_Hp[TrainHp])
-	elseif getPokemonName(1) == Train_Hp[TrainHp] and not isEvDone(getPokemonName(1), "HP") then
-		if getMapName() ~= Hp[1] then
-			MoveTo(Hp[1])
-		else
-			if logging == 0 then
-				log("Current HP-EV Value: "..getPokemonEffortValue(1, "HP"))
-				logging = logging + 1
-				moveToGrass()
+	if isPokemonUsable(1) then
+		if getPokemonName(1) ~= Train_Hp[TrainHp] then
+			swapPokemonWithLeader(Train_Hp[TrainHp])
+		elseif getPokemonName(1) == Train_Hp[TrainHp] and not isEvDone(getPokemonName(1), "HP") then
+			if getMapName() ~= Hp[1] then
+				MoveTo(Hp[1])
 			else
-				moveToGrass()
+				if logging == 0 then
+					log("Current HP-EV Value: "..getPokemonEffortValue(1, "HP"))
+					logging = logging + 1
+					moveToGrass()
+				else
+					moveToGrass()
+				end
 			end
+		elseif getPokemonName(1) == Train_Hp[TrainHp] and isEvDone(TrainHp, "HP") then
+			TrainHp = TrainHp - 1
 		end
-	elseif getPokemonName(1) == Train_Hp[TrainHp] and isEvDone(TrainHp, "HP") then
-		TrainHp = TrainHp - 1
+	elseif getMapName() == Hp[3] then
+		usePokecenter()
+	else
+		MoveTo(Hp[3])
 	end
 end
 
