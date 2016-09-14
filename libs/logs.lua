@@ -1,50 +1,50 @@
 function getStartLogs()
 	if Train_Hp[1] ~= nil then
 		for i = 1, #Train_Hp do
-			log("EV Trainer | "..Train_Hp[i].." -> HP Training")
+			log("EV Trainer | HP Training -> "..Train_Hp[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ HP Training")
+		log("EV Trainer | HP Training -> none")
 	end
 
 	if Train_Atk[1] ~= nil then
 		for i = 1, #Train_Atk do
-			log("EV Trainer | "..Train_Atk[i].." -> ATK Training")
+			log("EV Trainer | Atk Training -> "..Train_Atk[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ ATK Training")
+		log("EV Trainer | Atk Training -> none")
 	end
 
 	if Train_Def[1] ~= nil then
 		for i = 1, #Train_Def do
-			log("EV Trainer | "..Train_Hp[i].." -> DEF Training")
+			log("EV Trainer | Def Training -> "..Train_Hp[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ DEF Training")
+		log("EV Trainer | Def Training -> none")
 	end
 
 	if Train_Spd[1] ~= nil then
 		for i = 1, #Train_Spd do
-			log("EV Trainer | "..Train_Spd[i].." -> SPD Training")
+			log("EV Trainer | Spd Training -> "..Train_Spd[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ SPD Training")
+		log("EV Trainer | Spd Training -> none")
 	end
 
 	if Train_SpAtk[1] ~= nil then
 		for i = 1, #Train_SpAtk do
-			log("EV Trainer | "..Train_SpAtk[i].." -> SP.ATK Training")
+			log("EV Trainer | SpAtk Training -> "..Train_SpAtk[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ SP.ATK Training")
+		log("EV Trainer | SpAtk Training -> none")
 	end
 
 	if Train_SpDef[1] ~= nil then
 		for i = 1, #Train_SpDef do
-			log("EV Trainer | "..Train_SpDef[i].." -> SP.DEF Training")
+			log("EV Trainer | SpDef Training -> "..Train_SpDef[i])
 		end
 	else
-		log("EV Trainer | No Pomemon @ SP.DEF Training")
+		log("EV Trainer | SpDef Training -> none")
 	end
 
 end
