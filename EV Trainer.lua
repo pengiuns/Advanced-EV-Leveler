@@ -6,12 +6,20 @@ Import_Essentials = require "pathfind/Maps_Pathfind"
 function onStart()
  	dofile 'config.lua'
  	dofile 'libs/logs.lua'
+	dofile 'libs/KantoEvMap.lua'
  	dofile 'libs/core_functions.lua'
+	dofile 'libs/path_functions.lua'
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()
 	
-	convertTables()
+	-- Overall PokemonToTrainCounter
+	TrainHp = #Train_Hp
+	TrainAtk = #Train_Atk
+	TrainDef = #Train_Def
+	TrainSpd = #Train_Spd
+	TrainSpAtk = #Train_SpAtk
+	TrainSpDef = #Train_SpDef
 
 end
 
@@ -25,30 +33,36 @@ function onResume()
 end
 
 function onPathAction()
-	if isPokemonUsable(1) then
-        if not isTrainingMap() then
-        	if trainlist[getPokemonName(1)][1] == "Hp" then
-            	moveTo("Virdian Forest")
-        	elseif trainlist[getPokemonName(1)][1] == "Atk" then
-            	moveTo("")
-            elseif trainlist[getPokemonName(1)][1] == "Def" then
-            	moveTo("")
-            elseif trainlist[getPokemonName(1)][1] == "Spd" then
-            	moveTo("")
-            elseif trainlist[getPokemonName(1)][1] == "SpAtk" then
-            	moveTo("")
-            elseif trainlist[getPokemonName(1)][1] == "SpDef" then
-            	moveTo("")
-            end
-        end -- etc etc
-    end
+	-- start Hp Training
+	if TrainHp ~= 0 then
+		startHpTraining()
+	-- start Atk Training
+	elseif TrainHp == 0 and TrainAtk ~= 0 then
+		startAtkTraining()
+	-- Start Def Training
+	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
+		startDefTraining()
+	-- Start Spd Training
+	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
+		startSpdTraining()
+	-- Start SpAtk Training
+	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
+		startSpAtkTraining()
+	-- Start SpDef Training
+	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
+		startSpDefTraining()
+	-- Finished all Trainings
+	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
+		fatal("Ev Trainer | Training finished !")
+	end
 end
 
 function onBattleAction()
-	if isOpponentCorrect() then
-		return attack() or sendUsablePokemon() or run()
+	if not isTrainingMap() then
+		return run()
 	else
-		return run() or sendUsablePokemon()
+		logging = logging -1
+		return run()
 	end
 end
 
