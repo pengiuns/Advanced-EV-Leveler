@@ -4,6 +4,7 @@ function gainHp()
 			logging = logging - 1
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 		else
+			logging = logging - 1
 			return run()
 		end
 	else

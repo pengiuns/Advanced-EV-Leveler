@@ -1,28 +1,22 @@
 logging = 0
 
 function startHpTraining()
-	if isPokemonUsable(1) then
-		if getPokemonName(1) ~= Train_Hp[TrainHp] then
-			swapPokemonWithLeader(Train_Hp[TrainHp])
-		elseif getPokemonName(1) == Train_Hp[TrainHp] and not isEvDone(getPokemonName(1), "HP") then
-			if getMapName() ~= Hp[1] then
-				MoveTo(Hp[1])
+	if getPokemonName(1) ~= Train_Hp[TrainHp] then
+		swapPokemonWithLeader(Train_Hp[TrainHp])
+	elseif getPokemonName(1) == Train_Hp[TrainHp] and not isEvDone(getPokemonName(1), "HP") then
+		if getMapName() ~= Hp[1] then
+			MoveTo(Hp[1])
+		else
+			if logging == 0 then
+				log("EV Trainer | Current HP-EV Value: "..getPokemonEffortValue(1, "HP"))
+				logging = logging + 1
+				moveToGrass()
 			else
-				if logging == 0 then
-					log("Current HP-EV Value: "..getPokemonEffortValue(1, "HP"))
-					logging = logging + 1
-					moveToGrass()
-				else
-					moveToGrass()
-				end
+				moveToGrass()
 			end
-		elseif getPokemonName(1) == Train_Hp[TrainHp] and isEvDone(TrainHp, "HP") then
-			TrainHp = TrainHp - 1
 		end
-	elseif getMapName() == Hp[3] then
-		usePokecenter()
-	else
-		MoveTo(Hp[3])
+	elseif getPokemonName(1) == Train_Hp[TrainHp] and isEvDone(TrainHp, "HP") then
+		TrainHp = TrainHp - 1
 	end
 end
 
@@ -34,7 +28,7 @@ function startAtkTraining()
 			MoveTo(Atk[1])
 		else
 			if logging == 0 then
-				log("Current ATK-EV Value: "..getPokemonEffortValue(1, "Attack"))
+				log("EV Trainer | Current ATK-EV Value: "..getPokemonEffortValue(1, "Attack"))
 				logging = logging + 1
 				moveToGrass()
 			else
@@ -54,7 +48,7 @@ function startDefTraining()
 			MoveTo(Def[1])
 		else
 			if logging == 0 then
-				log("Current DEF-EV Value: "..getPokemonEffortValue(1, "Defense"))
+				log("EV Trainer | Current DEF-EV Value: "..getPokemonEffortValue(1, "Defense"))
 				logging = logging + 1
 				moveToGrass()
 			else
@@ -74,7 +68,7 @@ function startSpdTraining()
 			MoveTo(Spd[1])
 		else
 			if logging == 0 then
-				log("Current SPD-EV Value: "..getPokemonEffortValue(1, "Speed"))
+				log("EV Trainer | Current SPD-EV Value: "..getPokemonEffortValue(1, "Speed"))
 				logging = logging + 1
 				moveToGrass()
 			else
@@ -94,7 +88,7 @@ function startSpAtkTraining()
 			MoveTo(SpAtk[1])
 		else
 			if logging == 0 then
-				log("Current SpATK-EV Value: "..getPokemonEffortValue(1, "Spattack"))
+				log("EV Trainer | Current SpATK-EV Value: "..getPokemonEffortValue(1, "Spattack"))
 				logging = logging + 1
 				moveToGrass()
 			else
@@ -114,7 +108,7 @@ function startSpDefTraining()
 			MoveTo(SpDef[1])
 		else
 			if logging == 0 then
-				log("Current SpDef-EV Value: "..getPokemonEffortValue(1, "Spdefense"))
+				log("EV Trainer | Current SpDef-EV Value: "..getPokemonEffortValue(1, "Spdefense"))
 				logging = logging + 1
 				moveToGrass()
 			else
