@@ -35,27 +35,55 @@ end
 
 function onPathAction()
 
-	-- start Hp Training
-	if TrainHp ~= 0 then
-		startHpTraining()
-	-- start Atk Training
-	elseif TrainHp == 0 and TrainAtk ~= 0 then
-		startAtkTraining()
-	-- Start Def Training
-	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-		startDefTraining()
-	-- Start Spd Training
-	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-		startSpdTraining()
-	-- Start SpAtk Training
-	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-		startSpAtkTraining()
-	-- Start SpDef Training
-	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-		startSpDefTraining()
-	-- Finished all Trainings
-	elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
-		fatal("Ev Trainer | Training finished !")
+	if isPokemonUsable(1) then
+		-- start Hp Training
+		if TrainHp ~= 0 then
+			startHpTraining()
+		-- start Atk Training
+		elseif TrainHp == 0 and TrainAtk ~= 0 then
+			startAtkTraining()
+		-- Start Def Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
+			startDefTraining()
+		-- Start Spd Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
+			startSpdTraining()
+		-- Start SpAtk Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
+			startSpAtkTraining()
+		-- Start SpDef Training
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
+			startSpDefTraining()
+		-- Finished all Trainings
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
+			fatal("Ev Trainer | Training finished !")
+		end
+	else
+		if TrainHp ~= 0 then
+			if getMapName() == Hp[1] then
+				moveToMap("Route 2 Stop")
+			elseif getMapName() == "Route 2 Stop" then
+				moveToMap("Route 2")
+			elseif getMapName() == "Route 2" then
+				moveToMap("Viridian City")
+			elseif getMapName() == "Viridian City" then
+				moveToMap(Hp[3])
+			elseif getMapName() == Hp[3] then
+ 				usePokecenter()
+			end
+		elseif TrainHp == 0 and TrainAtk ~= 0 then
+			MoveTo(Atk[3])
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
+			MoveTo(Def[3])
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
+			MoveTo(Spd[3])
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
+			MoveTo(SpAtk[3])
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
+			MoveTo(SpDef[3])
+		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
+			fatal("Ev Trainer | Training finished !")
+		end
 	end
 end
 
