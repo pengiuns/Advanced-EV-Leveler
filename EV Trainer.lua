@@ -10,6 +10,7 @@ function onStart()
  	dofile 'libs/core_functions.lua'
 	dofile 'libs/path_functions.lua'
 	dofile 'libs/battle_functions.lua'
+	dofile 'libs/AntiBanQuestions.lua'
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()
@@ -35,56 +36,29 @@ end
 
 function onPathAction()
 
-	if isPokemonUsable(1) then
-		-- start Hp Training
 		if TrainHp ~= 0 then
-			startHpTraining()
+			startTraining(Train_Hp, TrainHp, "HP", Hp)
 		-- start Atk Training
 		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			startAtkTraining()
+			startTraining(Train_Atk, TrainAtk, "ATK", Atk)
 		-- Start Def Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			startDefTraining()
+			startTraining(Train_Def, TrainDef, "DEF", Def)
 		-- Start Spd Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			startSpdTraining()
+			startTraining(Train_Spd, TrainSpd, "SPD", Spd)
 		-- Start SpAtk Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			startSpAtkTraining()
+			startTraining(Train_SpAtk, TrainSpAtk, "SPATK", SpAtk)
 		-- Start SpDef Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			startSpDefTraining()
+			startTraining(Train_SpDef, TrainSpDef, "SPDEF", SpDef)
 		-- Finished all Trainings
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
 			fatal("Ev Trainer | Training finished !")
+			logout()
 		end
-	else
-		if TrainHp ~= 0 then
-			if getMapName() == Hp[1] then
-				moveToMap("Route 2 Stop")
-			elseif getMapName() == "Route 2 Stop" then
-				moveToMap("Route 2")
-			elseif getMapName() == "Route 2" then
-				moveToMap("Viridian City")
-			elseif getMapName() == "Viridian City" then
-				moveToMap(Hp[3])
-			elseif getMapName() == Hp[3] then
- 				usePokecenter()
-			end
-		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			MoveTo(Atk[3])
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			MoveTo(Def[3])
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			MoveTo(Spd[3])
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			MoveTo(SpAtk[3])
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			MoveTo(SpDef[3])
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
-			fatal("Ev Trainer | Training finished !")
-		end
-	end
+
 end
 
 function onBattleAction()
@@ -92,7 +66,7 @@ function onBattleAction()
 	if isTrainingMap() then
 		-- start Hp Training
 		if TrainHp ~= 0 then
-			gainHp()
+			gainEv(Train_Hp, TrainHp, Hp)
 		-- start Atk Training
 		elseif TrainHp == 0 and TrainAtk ~= 0 then
 			gainAtk()
@@ -110,7 +84,7 @@ function onBattleAction()
 			gainSpDef()
 		-- Finished all Trainings
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
-			fatal("Ev Trainer | Something went wrong !")
+			fatal("Ev Trainer | Something went wrong, Try restarting the Script !")
 		end
 	else
 		return run()
@@ -120,6 +94,17 @@ end
 
 function onDialogMessage(message)
 	SolveDialog(message)
+end
+
+function onBattleMessage(wild)
+	if stringContains(wild, "You have won the battle.") then
+		log("EV Trainer | "..getPokemonName(1).." HP : "..getPokemonEffortValue(1, "HP"))
+		log("EV Trainer | "..getPokemonName(1).." Atk : "..getPokemonEffortValue(1, "ATK"))
+		log("EV Trainer | "..getPokemonName(1).." Def : "..getPokemonEffortValue(1, "DEF"))
+		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
+		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
+		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
+	end
 end
 
 function onStop()
