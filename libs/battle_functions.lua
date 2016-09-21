@@ -1,23 +1,10 @@
-function gainHp()
-	if getActivePokemonNumber() == 1 then
-		if getOpponentName() == Hp[2][1] or getOpponentName() == Hp[2][2] then
-			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
-		else
-			return run()
-		end
-	else
-		return run()
-	end
-end
-
 function isOpponentCorrect(EvShort)
     for i = 1 , #EvShort[2] do
         if getOpponentName() == EvShort[2][i] then
             return true
-        else
-            return false
         end
     end
+    return false
 end
 
 function gainEv(EvTable, EvCount, EvShort)

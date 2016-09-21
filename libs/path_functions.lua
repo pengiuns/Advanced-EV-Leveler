@@ -7,7 +7,13 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 				MoveTo(EvShort[1])
 			else
 				ResetPath()
-				moveToGrass()
+				if getMapName() == "Digletts Cave Entrance 2" then
+					moveToRectangle(17, 23, 25, 27)
+				elseif getMapName() == "Route 19" then
+					moveToWater()
+				else
+					moveToGrass()
+				end
 			end
 		elseif getPokemonName(1) == EvTable[EvCount] and isEvDone(EvName) then
 			EvCount = EvCount - 1

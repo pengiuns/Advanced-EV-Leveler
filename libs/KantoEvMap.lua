@@ -1,6 +1,6 @@
 Hp = {"Viridian Forest", {"Caterpie", "Hoothoot"}, "Pokecenter Viridian"}
-Atk = {"Route 12", {"Bellsprout", "Weepinbell"}}
+Atk = {"Route 12", {"Bellsprout", "Weepinbell"}, "Vermilion City"}
 Def = {"Viridian Forest", {"Metapod", "Kakuna"}, "Pokecenter Viridian"}
-Spd = {"Diglett Cave", {"Zubat", "Diglett", "Dugtrio"}}
-SpAtk = {"Route 5", {"Oddish", "Abra", "Gloom"}}
-SpDef = {"Route 19", {"Tentacool", "Tentacruel"}}
+Spd = {"Digletts Cave Entrance 2", {"Zubat", "Diglett", "Dugtrio"}, ""}
+SpAtk = {"Route 6", {"Psyduck", "Abra", "Magnemite"}, "Vermilion City"}
+SpDef = {"Route 19", {"Tentacool", "Tentacruel"}, "Fuchsia City"}

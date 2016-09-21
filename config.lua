@@ -6,3 +6,8 @@ Train_Spd 	= {}
 Train_SpAtk = {}
 Train_SpDef = {}
 
+-- not implemented yet !
+Mount = "Latios"
+
+-- not implemented yet !
+useSound = false

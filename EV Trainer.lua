@@ -104,6 +104,7 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
 		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
 		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
+		playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
 	end
 end
 
