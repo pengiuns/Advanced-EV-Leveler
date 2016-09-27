@@ -4,9 +4,9 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 			swapPokemonWithLeader(EvTable[EvCount])
 		elseif getPokemonName(1) == EvTable[EvCount] and not isEvDone(EvName) then
 			if getMapName() ~= EvShort[1] then
-				PathFinder.MoveTo(EvShort[1])
-			else
 				ResetPath()
+				MoveTo(EvShort[1])
+			else
 				if getMapName() == "Digletts Cave Entrance 2" then
 					moveToRectangle(17, 23, 25, 27)
 				elseif getMapName() == "Route 19" then
@@ -20,9 +20,11 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 		end
 	else
 		if getMapName() ~= EvShort[3] then
-			PathFinder.MoveTo(EvShort[3])
+			ResetPath()
+			MoveTo(EvShort[3])
 		else
 			usePokecenter()
+			ResetPath()
 		end
 	end
 end

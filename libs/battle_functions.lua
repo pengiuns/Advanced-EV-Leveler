@@ -8,7 +8,7 @@ function isOpponentCorrect(EvShort)
 end
 
 function gainEv(EvTable, EvCount, EvShort)
-	if getActivePokemonNumber() == pokemonNameIndex(EvTable[EvCount]) then
+	if getActivePokemonNumber() == 1 then
 		if isOpponentCorrect(EvShort) then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
 		else

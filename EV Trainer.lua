@@ -1,9 +1,10 @@
 name = "Advanced EV Trainer"
 author = "imMigno & SCode"
 
-local PathFinder = require "Pathfinder/Maps_Pathfind"
+Import_Essentials = require "pathfind/Maps_Pathfind"
 
 function onStart()
+
  	dofile 'config.lua'
  	dofile 'libs/logs.lua'
 	dofile 'libs/EvMap.lua'
@@ -27,7 +28,6 @@ end
 
 function onPause()
 	log("EV Trainer | Paused")
-	ResetPath()
 end
 
 function onResume()
@@ -70,19 +70,19 @@ function onBattleAction()
 			gainEv(Train_Hp, TrainHp, Hp)
 		-- start Atk Training
 		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			gainAtk()
+			gainEv(Train_Atk, TrainAtk, Atk)
 		-- Start Def Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			gainDef()
+			gainEv(Train_Def, TrainDef, Def)
 		-- Start Spd Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			gainSpd()
+			gainEv(Train_Spd, TrainSpd, Spd)
 		-- Start SpAtk Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			gainSpAtk()
+			gainEv(Train_SpAtk, TrainSpAtk, SpAtk)
 		-- Start SpDef Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			gainSpDef()
+			gainEv(Train_SpDef, TrainSpDef, SpDef)
 		-- Finished all Trainings
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
 			fatal("Ev Trainer | Something went wrong, Try restarting the Script !")
@@ -105,7 +105,7 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
 		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
 		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
-		if useSound = true then
+		if useSound == true then
 			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
 		end
 	end

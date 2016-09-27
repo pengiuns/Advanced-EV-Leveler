@@ -1,15 +1,11 @@
 
-Region = "Kanto"
 -- Please fill your Pokemon names to the desired EV Training !
-Train_Hp 	= {"Makuhita"}
-Train_Atk 	= {}
-Train_Def 	= {"Makuhita"}
-Train_Spd 	= {}
+Train_Hp 	= {}
+Train_Atk 	= {"Sudowoodo",}
+Train_Def 	= {}
+Train_Spd 	= {"Sudowoodo",}
 Train_SpAtk = {}
 Train_SpDef = {}
 
 -- not implemented yet !
-Mount = "Latios"
-
--- not implemented yet !
-useSound = false
+useSound = true
