@@ -4,7 +4,6 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 			swapPokemonWithLeader(EvTable[EvCount])
 		elseif getPokemonName(1) == EvTable[EvCount] and not isEvDone(EvName) then
 			if getMapName() ~= EvShort[1] then
-				ResetPath()
 				MoveTo(EvShort[1])
 			else
 				if getMapName() == "Digletts Cave Entrance 2" then
@@ -20,7 +19,6 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 		end
 	else
 		if getMapName() ~= EvShort[3] then
-			ResetPath()
 			MoveTo(EvShort[3])
 		else
 			usePokecenter()
