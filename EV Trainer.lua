@@ -1,12 +1,12 @@
 name = "Advanced EV Trainer"
 author = "imMigno & SCode"
 
-Import_Essentials = require "pathfind/Maps_Pathfind"
+local PathFinder = require "Pathfinder/Maps_Pathfind"
 
 function onStart()
  	dofile 'config.lua'
  	dofile 'libs/logs.lua'
-	dofile 'libs/KantoEvMap.lua'
+	dofile 'libs/EvMap.lua'
  	dofile 'libs/core_functions.lua'
 	dofile 'libs/path_functions.lua'
 	dofile 'libs/battle_functions.lua'
@@ -27,6 +27,7 @@ end
 
 function onPause()
 	log("EV Trainer | Paused")
+	ResetPath()
 end
 
 function onResume()
@@ -104,7 +105,9 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
 		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
 		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
-		playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
+		if useSound = true then
+			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
+		end
 	end
 end
 

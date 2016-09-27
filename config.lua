@@ -1,3 +1,5 @@
+
+Region = "Kanto"
 -- Please fill your Pokemon names to the desired EV Training !
 Train_Hp 	= {"Makuhita"}
 Train_Atk 	= {}
