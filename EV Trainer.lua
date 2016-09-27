@@ -11,7 +11,6 @@ function onStart()
  	dofile 'libs/core_functions.lua'
 	dofile 'libs/path_functions.lua'
 	dofile 'libs/battle_functions.lua'
-	dofile 'libs/AntiBanQuestions.lua'
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()

@@ -17,7 +17,7 @@ function getStartLogs()
 
 	if Train_Def[1] ~= nil then
 		for i = 1, #Train_Def do
-			log("EV Trainer | Def Training -> "..Train_Hp[i])
+			log("EV Trainer | Def Training -> "..Train_Def[i])
 		end
 	else
 		log("EV Trainer | Def Training -> none")
