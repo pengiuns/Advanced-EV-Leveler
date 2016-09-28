@@ -33,7 +33,11 @@ function isFullyTrained(name)
 end
 
 function isTrainingMap()
-    if getMapName() == "Viridian Forest" or getMapName() == "Route 12" or getMapName() == "Digletts Cave Entrance 2" or getMapName() == "Route 6" or getMapName() == "Route 19" then
+    if getMapName() == "Viridian Forest" or 
+       getMapName() == "Route 12" or 
+       getMapName() == "Digletts Cave Entrance 2" or 
+       getMapName() == "Route 6" or 
+       getMapName() == "Route 19" then
         return true
     else
         return false

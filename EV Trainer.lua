@@ -14,6 +14,7 @@ function onStart()
 	
 	log("EV Trainer | Welcome")
 	getStartLogs()
+	ResetPath()
 	
 	-- Overall PokemonToTrainCounter
 	TrainHp = #Train_Hp
@@ -27,6 +28,7 @@ end
 
 function onPause()
 	log("EV Trainer | Paused")
+	ResetPath()
 end
 
 function onResume()
@@ -107,6 +109,11 @@ function onBattleMessage(wild)
 		if useSound == true then
 			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
 		end
+	end
+
+	if stringContains(wild, getPokemonName(1).." has fainted!") then
+		log("EV Trainer | "..getPokemonName(1).." has fainted -> Resetting Path !")
+		ResetPath()
 	end
 end
 

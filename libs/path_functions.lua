@@ -6,7 +6,6 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 			if getMapName() ~= EvShort[1] then
 				MoveTo(EvShort[1])
 			else
-				ResetPath()
 				if getMapName() == "Digletts Cave Entrance 2" then
 					moveToRectangle(17, 23, 25, 27)
 				elseif getMapName() == "Route 19" then
