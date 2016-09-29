@@ -9,7 +9,7 @@ if Region == "Kanto" then
 end
 
 if Region == "Johto" then
-	Hp = {"Viridian Forest", {"Caterpie", "Hoothoot"}}
+	Hp = {"Ruins of Alph Entrance", {"Wooper", "Quagsire"}, {"Surf"}}
 	Atk = {"Route 12", {"Bellsprout", "Weepinbell"}}
 	Def = {"Viridian Forest", {"Metapod", "Kakuna"}}
 	Spd = {"Digletts Cave Entrance 2", {"Zubat", "Diglett", "Dugtrio"}}
