@@ -1,60 +1,43 @@
-name = "Advanced EV Trainer"
+name = "Advanced EV-Trainer"
 author = "imMigno & SCode"
-
-Import_Essentials = require "pathfind/Maps_Pathfind"
 
 function onStart()
 
- 	dofile 'config.lua'
- 	dofile 'libs/logs.lua'
-	dofile 'libs/EvMap.lua'
- 	dofile 'libs/core_functions.lua'
-	dofile 'libs/path_functions.lua'
-	dofile 'libs/battle_functions.lua'
-	
-	log("EV Trainer | Welcome")
-	getStartLogs()
-	ResetPath()
-	
-	-- Overall PokemonToTrainCounter
-	TrainHp = #Train_Hp
-	TrainAtk = #Train_Atk
-	TrainDef = #Train_Def
-	TrainSpd = #Train_Spd
-	TrainSpAtk = #Train_SpAtk
-	TrainSpDef = #Train_SpDef
-
-end
-
-function onPause()
-	log("EV Trainer | Paused")
-	ResetPath()
-end
-
-function onResume()
+	dofile 'lib/system.lua'
 	dofile 'config.lua'
-	log("EV Trainer | Resumed -> Config reloaded")
+	dofile 'lib/evMap.lua'
+
+	TrainHp 		= #Hp_Training
+	TrainAtk 		= #Atk_Training
+	TrainDef 		= #Def_Training
+	TrainSpd 		= #Spd_Training
+	TrainSpAtk	 	= #SpAtk_Training
+	TrainSpDef	 	= #SpDef_Training
+
+	log("EV Trainer | Version 1.0 Release")
+	getStartLogs()
+
 end
 
 function onPathAction()
 
 		if TrainHp ~= 0 then
-			startTraining(Train_Hp, TrainHp, "HP", Hp)
+			startTraining(Hp_Training, TrainHp, "HP", Hp)
 		-- start Atk Training
 		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			startTraining(Train_Atk, TrainAtk, "ATK", Atk)
+			startTraining(Atk_Training, TrainAtk, "ATK", Atk)
 		-- Start Def Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			startTraining(Train_Def, TrainDef, "DEF", Def)
+			startTraining(Def_Training, TrainDef, "DEF", Def)
 		-- Start Spd Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			startTraining(Train_Spd, TrainSpd, "SPD", Spd)
+			startTraining(Spd_Training, TrainSpd, "SPD", Spd)
 		-- Start SpAtk Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			startTraining(Train_SpAtk, TrainSpAtk, "SPATK", SpAtk)
+			startTraining(SpAtk_Training, TrainSpAtk, "SPATK", SpAtk)
 		-- Start SpDef Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			startTraining(Train_SpDef, TrainSpDef, "SPDEF", SpDef)
+			startTraining(SpDef_Training, TrainSpDef, "SPDEF", SpDef)
 		-- Finished all Trainings
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
 			fatal("Ev Trainer | Training finished !")
@@ -65,37 +48,29 @@ end
 
 function onBattleAction()
 	
-	if isTrainingMap() then
 		-- start Hp Training
 		if TrainHp ~= 0 then
-			gainEv(Train_Hp, TrainHp, Hp)
+			gainEv(Hp_Training, TrainHp, Hp)
 		-- start Atk Training
 		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			gainEv(Train_Atk, TrainAtk, Atk)
+			gainEv(Atk_Training, TrainAtk, Atk)
 		-- Start Def Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			gainEv(Train_Def, TrainDef, Def)
+			gainEv(Def_Training, TrainDef, Def)
 		-- Start Spd Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			gainEv(Train_Spd, TrainSpd, Spd)
+			gainEv(Spd_Training, TrainSpd, Spd)
 		-- Start SpAtk Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			gainEv(Train_SpAtk, TrainSpAtk, SpAtk)
+			gainEv(SpAtk_Training, TrainSpAtk, SpAtk)
 		-- Start SpDef Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			gainEv(Train_SpDef, TrainSpDef, SpDef)
+			gainEv(SpDef_Training, TrainSpDef, SpDef)
 		-- Finished all Trainings
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
 			fatal("Ev Trainer | Something went wrong, Try restarting the Script !")
 		end
-	else
-		return run()
-	end
 	
-end
-
-function onDialogMessage(message)
-	SolveDialog(message)
 end
 
 function onBattleMessage(wild)
@@ -115,8 +90,4 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." has fainted -> Resetting Path !")
 		ResetPath()
 	end
-end
-
-function onStop()
-	ResetPath()
 end
