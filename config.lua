@@ -1,5 +1,5 @@
--- Please specify the reagion where you want to execute the EV-Training
 Region = "Kanto"
+useSound = true
 
 Hp_Training 		= {}
 Atk_Training 		= {"Shinx"}

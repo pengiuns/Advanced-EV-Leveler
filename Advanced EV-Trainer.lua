@@ -72,3 +72,22 @@ function onBattleAction()
 		end
 	
 end
+
+function onBattleMessage(wild)
+	if stringContains(wild, "You have won the battle.") then
+		log("EV Trainer | "..getPokemonName(1).." HP : "..getPokemonEffortValue(1, "HP"))
+		log("EV Trainer | "..getPokemonName(1).." Atk : "..getPokemonEffortValue(1, "ATK"))
+		log("EV Trainer | "..getPokemonName(1).." Def : "..getPokemonEffortValue(1, "DEF"))
+		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
+		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
+		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
+		if useSound == true then
+			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
+		end
+	end
+
+	if stringContains(wild, getPokemonName(1).." has fainted!") then
+		log("EV Trainer | "..getPokemonName(1).." has fainted -> Resetting Path !")
+		ResetPath()
+	end
+end

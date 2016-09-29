@@ -1,5 +1,8 @@
 local PathFinder = require "Pathfinder/Maps_Pathfind"
 
+function onStart()
+	PathFinder.DisableDigPath()
+end
 
 -- Return index from PokemonName
 function getPokemonNameIndex(name)
@@ -80,12 +83,10 @@ function getHealed()
 end
 
 function getLevelSpot(EvShort)
-	if EvShort[3][2] == nil then
-		if EvShort[3][1] == "Grass" then
-			moveToGrass()
-		elseif EvShort[3][1] == "Water" then
-			moveToWater()
-		end
+	if EvShort[3][1] == "Grass" then
+		moveToGrass()
+	elseif EvShort[3][1] == "Water" then
+		moveToWater()
 	else
 		moveToRectangle(EvShort[3][1], EvShort[3][2], EvShort[3][3], EvShort[3][4])
 	end
@@ -99,7 +100,7 @@ function startTraining(EvTable, EvCount, EvName, EvShort)
 			if getMapName() ~= EvShort[1] then
 				PathFinder.MoveTo(EvShort[1])
 			else
-				getLevelSpot()
+				getLevelSpot(EvShort)
 			end
 		elseif getPokemonName(1) == EvTable[EvCount] and isEvDone(EvName) then
 			EvCount = EvCount - 1
