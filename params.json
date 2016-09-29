@@ -1,0 +1,6 @@
+{
+  "name": "[ ADVANCED ] EV-Trainer",
+  "tagline": "Your solution for a fast and efficient EV-Training ! - made by imMigno & SCode",
+  "body": "### Introduction\r\nThe Advanced EV-Trainer is your solution for a constant EV-Training without a single change for different EV-Trainings. This script combines all existent EV-Trainings in one huge, user configured solution !\r\n\r\n### How to use the EV-Trainer\r\nOnce setup the script does everything by itself. You can edit the `config.lua` to your needs.\r\n\r\n**Example:**\r\n```lua\r\nRegion = \"Kanto\"\r\nuseSound = true\r\n\r\nHp_Training \t\t= {\"Snorlax\"}\r\nAtk_Training \t\t= {}\r\nDef_Training \t\t= {\"Snorlax\"}\r\nSpd_Training \t\t= {\"Pikachu\", \"Gardevoir\"}\r\nSpAtk_Training\t \t= {\"Pikachu\", \"Gardevoir\"}\r\nSpDef_Training\t\t= {}\r\n```\r\n\r\n### Support or Contact\r\nIf you run into troubles or want to report an error, please contact me on discord or write a post on the official thread!\r\n\r\nDiscord: <https://discord.gg/6nhyeuA> - @Migno\r\n\r\nThread: <https://proshine-bot.com/thread-1410.html>",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
