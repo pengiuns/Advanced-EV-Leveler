@@ -39,7 +39,7 @@ function isOpponentCorrect(EvShort)
     return false
 end
 
-function gainEv(EvTable, EvCount, EvShort)
+function gainEv(EvShort)
 	if getActivePokemonNumber() == 1 then
 		if isOpponentCorrect(EvShort) then
 			return attack() or sendUsablePokemon() or sendAnyPokemon() or run()
@@ -92,18 +92,18 @@ function getLevelSpot(EvShort)
 	end
 end
 
-function startTraining(EvTable, EvCount, EvName, EvShort)
+function startTraining(EvTable, EvName, EvShort)
 	if isPokemonUsable(1) then
-		if getPokemonName(1) ~= EvTable[EvCount] then
-			swapPokemonWithLeader(EvTable[EvCount])
-		elseif getPokemonName(1) == EvTable[EvCount] and not isEvDone(EvName) then
+		if getPokemonName(1) ~= EvTable[1] then
+			swapPokemonWithLeader(EvTable[1])
+		elseif getPokemonName(1) == EvTable[1] and not isEvDone(EvName) then
 			if getMapName() ~= EvShort[1] then
 				PathFinder.MoveTo(EvShort[1])
 			else
 				getLevelSpot(EvShort)
 			end
-		elseif getPokemonName(1) == EvTable[EvCount] and isEvDone(EvName) then
-			EvCount = EvCount - 1
+		elseif getPokemonName(1) == EvTable[1] and isEvDone(EvName) then
+			table.remove(EvTable, 1)
 		end
 	else
 		getHealed()
