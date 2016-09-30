@@ -20,55 +20,56 @@ function onStart()
 end
 
 function onPathAction()
-
-		if TrainHp ~= 0 then
-			startTraining(Hp_Training, TrainHp, "HP", Hp)
+		
+		if Hp_Training[1] then
+			startTraining(Hp_Training, "HP", Hp)
 		-- start Atk Training
-		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			startTraining(Atk_Training, TrainAtk, "ATK", Atk)
+		elseif not Hp_Training[1] and Spd_Training[1] then
+			startTraining(Spd_Training, "SPD", Spd)
 		-- Start Def Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
-			startTraining(Def_Training, TrainDef, "DEF", Def)
+		elseif not Hp_Training[1] and not Spd_Training[1] and Def_Training[1] then
+			startTraining(Def_Training, "DEF", Def)
 		-- Start Spd Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			startTraining(Spd_Training, TrainSpd, "SPD", Spd)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and Atk_Training[1] then
+			startTraining(Atk_Training, "ATK", Atk)
 		-- Start SpAtk Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			startTraining(SpAtk_Training, TrainSpAtk, "SPATK", SpAtk)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and SpAtk_Training[1] then
+			startTraining(SpAtk_Training, "SPATK", SpAtk)
 		-- Start SpDef Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			startTraining(SpDef_Training, TrainSpDef, "SPDEF", SpDef)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and not SpAtk_Training[1] and SpDef_Training[1] then
+			startTraining(SpDef_Training, "SPDEF", SpDef)
 		-- Finished all Trainings
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and not SpAtk_Training[1] and not SpDef_Training[1] then
 			fatal("Ev Trainer | Training finished !")
 			logout()
 		end
-
+		
+		
 end
 
 function onBattleAction()
 	
 		-- start Hp Training
-		if TrainHp ~= 0 then
-			gainEv(Hp_Training, TrainHp, Hp)
+		if Hp_Training[1] then
+			gainEv(Hp)
 		-- start Atk Training
-		elseif TrainHp == 0 and TrainSpd ~= 0 then
-			gainEv(Spd_Training, TrainSpd, Spd)
+		elseif not Hp_Training[1] and Spd_Training[1] then
+			gainEv(Spd)
 		-- Start Def Training
-		elseif TrainHp == 0 and TrainSpd == 0 and TrainDef ~= 0 then
-			gainEv(Def_Training, TrainDef, Def)
+		elseif not Hp_Training[1] and not Spd_Training[1] and Def_Training[1] then
+			gainEv(Def)
 		-- Start Spd Training
-		elseif TrainHp == 0 and TrainSpd == 0 and TrainDef == 0 and TrainAtk ~= 0 then
-			gainEv(Atk_Training, TrainAtk, Atk)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and Atk_Training[1] then
+			gainEv(Atk)
 		-- Start SpAtk Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
-			gainEv(SpAtk_Training, TrainSpAtk, SpAtk)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and SpAtk_Training[1] then
+			gainEv(SpAtk)
 		-- Start SpDef Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef ~= 0 then
-			gainEv(SpDef_Training, TrainSpDef, SpDef)
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and not SpAtk_Training[1] and SpDef_Training[1] then
+			gainEv(SpDef)
 		-- Finished all Trainings
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk == 0 and TrainSpDef == 0 then
-			fatal("Ev Trainer | Something went wrong, Try restarting the Script !")
+		elseif not Hp_Training[1] and not Spd_Training[1] and not Def_Training[1] and not Atk_Training[1] and not SpAtk_Training[1] and not SpDef_Training[1] then
+			fatal("Ev Trainer | Started script with no or wrong configuration, please fix this !")
 		end
 	
 end
