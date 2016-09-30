@@ -52,14 +52,14 @@ function onBattleAction()
 		if TrainHp ~= 0 then
 			gainEv(Hp_Training, TrainHp, Hp)
 		-- start Atk Training
-		elseif TrainHp == 0 and TrainAtk ~= 0 then
-			gainEv(Atk_Training, TrainAtk, Atk)
+		elseif TrainHp == 0 and TrainSpd ~= 0 then
+			gainEv(Spd_Training, TrainSpd, Spd)
 		-- Start Def Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef ~= 0 then
+		elseif TrainHp == 0 and TrainSpd == 0 and TrainDef ~= 0 then
 			gainEv(Def_Training, TrainDef, Def)
 		-- Start Spd Training
-		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd ~= 0 then
-			gainEv(Spd_Training, TrainSpd, Spd)
+		elseif TrainHp == 0 and TrainSpd == 0 and TrainDef == 0 and TrainAtk ~= 0 then
+			gainEv(Atk_Training, TrainAtk, Atk)
 		-- Start SpAtk Training
 		elseif TrainHp == 0 and TrainAtk == 0 and TrainDef == 0 and TrainSpd == 0 and TrainSpAtk ~= 0 then
 			gainEv(SpAtk_Training, TrainSpAtk, SpAtk)
@@ -82,7 +82,7 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
 		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
 		if useSound == true then
-			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".mp3")
+			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".wav")
 		end
 	end
 
