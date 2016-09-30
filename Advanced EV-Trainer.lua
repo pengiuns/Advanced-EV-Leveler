@@ -7,16 +7,38 @@ function onStart()
 	dofile 'config.lua'
 	dofile 'lib/evMap.lua'
 
-	TrainHp 		= #Hp_Training
-	TrainAtk 		= #Atk_Training
-	TrainDef 		= #Def_Training
-	TrainSpd 		= #Spd_Training
-	TrainSpAtk	 	= #SpAtk_Training
-	TrainSpDef	 	= #SpDef_Training
 
-	log("EV Trainer | Version 1.0 Release")
+
+	log("EV Trainer | Version 1.0.1 Release")
 	getStartLogs()
 
+	if autoEvolve == "on" then
+		if not isAutoEvolve() then
+			enableAutoEvolve()
+			log("EV Trainer | AutoEvolve enabled")
+		else
+			log("EV Trainer | AutoEvolve is already enabled")
+		end
+	end
+
+	if autoEvolve == "off" then
+		if isAutoEvolve then
+			disableAutoEvolve()
+			log("EV Trainer | AutoEvolve disabled")
+		else
+			log("EV Trainer | AutoEvolve is already disabled")
+		end
+	end
+
+end
+
+function onPause()
+	log("EV Trainer | Paused")
+end
+
+function onResume()
+	dofile 'config.lua'
+	log("EV Trainer | Resumed - Config reloaded")
 end
 
 function onPathAction()
@@ -82,13 +104,5 @@ function onBattleMessage(wild)
 		log("EV Trainer | "..getPokemonName(1).." Spd : "..getPokemonEffortValue(1, "SPD"))
 		log("EV Trainer | "..getPokemonName(1).." SpAtk : "..getPokemonEffortValue(1, "SPATK"))
 		log("EV Trainer | "..getPokemonName(1).." SpDef : "..getPokemonEffortValue(1, "SPDEF"))
-		if useSound == true then
-			playSound("sounds/"..getPokemonEffortValue(1, 'HP')..".wav")
-		end
-	end
-
-	if stringContains(wild, getPokemonName(1).." has fainted!") then
-		log("EV Trainer | "..getPokemonName(1).." has fainted -> Resetting Path !")
-		ResetPath()
 	end
 end

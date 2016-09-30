@@ -103,6 +103,7 @@ function startTraining(EvTable, EvName, EvShort)
 				getLevelSpot(EvShort)
 			end
 		elseif getPokemonName(1) == EvTable[1] and isEvDone(EvName) then
+			log("EV Trainer | "..getPokemonName(1).." finished "..EvName.."-Training !")
 			table.remove(EvTable, 1)
 		end
 	else
@@ -111,37 +112,37 @@ function startTraining(EvTable, EvName, EvShort)
 end
 
 function getStartLogs()
-	if Hp_Training[1] ~= nil then
+	if Hp_Training[1] then
 		for i = 1, #Hp_Training do
 			log("EV Trainer | HP Training -> "..Hp_Training[i])
 		end
 	end
 
-	if Atk_Training[1] ~= nil then
+	if Atk_Training[1] then
 		for i = 1, #Atk_Training do
 			log("EV Trainer | Atk Training -> "..Atk_Training[i])
 		end
 	end
 
-	if Def_Training[1] ~= nil then
+	if Def_Training[1] then
 		for i = 1, #Def_Training do
 			log("EV Trainer | Def Training -> "..Def_Training[i])
 		end
 	end
 
-	if Spd_Training[1] ~= nil then
+	if Spd_Training[1] then
 		for i = 1, #Spd_Training  do
 			log("EV Trainer | Spd Training -> "..Spd_Training[i])
 		end
 	end
 
-	if SpAtk_Training[1] ~= nil then
+	if SpAtk_Training[1] then
 		for i = 1, #SpAtk_Training do
 			log("EV Trainer | SpAtk Training -> "..SpAtk_Training[i])
 		end
 	end
 
-	if SpDef_Training[1] ~= nil then
+	if SpDef_Training[1] then
 		for i = 1, #SpDef_Training do
 			log("EV Trainer | SpDef Training -> "..SpDef_Training[i])
 		end
