@@ -14,11 +14,20 @@ function getPokemonNameIndex(name)
 end
 
 -- Return true/false if EV is maxed or not
-function isEvDone(ev)
-	if getPokemonEffortValue(1, ev) >= 252 then
-		return true
+function isEvDone(ev, EvTable)
+
+	if EvTable[1][2] then
+		if getPokemonEffortValue(1, ev) >= EvTable[1][2] then
+			return true
+		else
+			return false
+		end
 	else
-		return false
+		if getPokemonEffortValue(1, ev) >= 252 then
+			return true
+		else
+			return false
+		end
 	end
 end
 
@@ -94,16 +103,51 @@ end
 
 function startTraining(EvTable, EvName, EvShort)
 	if isPokemonUsable(1) then
-		if getPokemonName(1) ~= EvTable[1] then
-			swapPokemonWithLeader(EvTable[1])
-		elseif getPokemonName(1) == EvTable[1] and not isEvDone(EvName) then
-			if getMapName() ~= EvShort[1] then
-				PathFinder.MoveTo(EvShort[1])
+		if getPokemonName(1) ~= EvTable[1][1] then
+			swapPokemonWithLeader(EvTable[1][1])
+		elseif getPokemonName(1) == EvTable[1][1] and not isEvDone(EvName, EvTable) then
+
+			if not isLastTenEvs(EvTable, EvName) then
+
+				if not hasMachoBrace() then
+					if not hasItem("Macho Brace") then
+						getItemFromTeam("Macho Brace")
+						log("EV Trainer | Receive Macho Brace from Team")
+					elseif hasItem("Macho Brace") then
+						giveItemToPokemon("Macho Brace", 1)
+						log("EV Trainer | Macho Brace equiped")
+					else
+						log("EV Trainer | Macho Brace not found -> Continue without !")
+						if getMapName() ~= EvShort[1] then
+							PathFinder.MoveTo(EvShort[1])
+						else
+							getLevelSpot(EvShort)
+						end
+					end
+				else
+					if getMapName() ~= EvShort[1] then
+						PathFinder.MoveTo(EvShort[1])
+					else
+						getLevelSpot(EvShort)
+					end
+				end
+
+			elseif isLastTenEvs(EvTable, EvName) and getPokemonHeldItem(1) == "Macho Brace" then
+				log("EV Trainer | Less then 10 missing EV's -> Removed Macho Brace")
+				takeItemFromPokemon(1)
+
 			else
-				getLevelSpot(EvShort)
+				if getMapName() ~= EvShort[1] then
+					PathFinder.MoveTo(EvShort[1])
+				else
+					getLevelSpot(EvShort)
+				end
 			end
-		elseif getPokemonName(1) == EvTable[1] and isEvDone(EvName) then
-			log("EV Trainer | "..getPokemonName(1).." finished "..EvName.."-Training !")
+
+
+
+		elseif getPokemonName(1) == EvTable[1][1] and isEvDone(EvName, EvTable) then
+			log("EV Trainer | "..getPokemonName(1).." finished "..EvName.."-Training ! [ "..getPokemonEffortValue(1, EvName).." / ".. EvTable[1][2].. " ]")
 			table.remove(EvTable, 1)
 		end
 	else
@@ -114,38 +158,65 @@ end
 function getStartLogs()
 	if Hp_Training[1] then
 		for i = 1, #Hp_Training do
-			log("EV Trainer | HP Training -> "..Hp_Training[i])
+			log("EV Trainer | HP Training -> "..Hp_Training[i][1])
 		end
 	end
 
 	if Atk_Training[1] then
 		for i = 1, #Atk_Training do
-			log("EV Trainer | Atk Training -> "..Atk_Training[i])
+			log("EV Trainer | Atk Training -> "..Atk_Training[i][1])
 		end
 	end
 
 	if Def_Training[1] then
 		for i = 1, #Def_Training do
-			log("EV Trainer | Def Training -> "..Def_Training[i])
+			log("EV Trainer | Def Training -> "..Def_Training[i][1])
 		end
 	end
 
 	if Spd_Training[1] then
 		for i = 1, #Spd_Training  do
-			log("EV Trainer | Spd Training -> "..Spd_Training[i])
+			log("EV Trainer | Spd Training -> "..Spd_Training[i][1])
 		end
 	end
 
 	if SpAtk_Training[1] then
 		for i = 1, #SpAtk_Training do
-			log("EV Trainer | SpAtk Training -> "..SpAtk_Training[i])
+			log("EV Trainer | SpAtk Training -> "..SpAtk_Training[i][1])
 		end
 	end
 
 	if SpDef_Training[1] then
 		for i = 1, #SpDef_Training do
-			log("EV Trainer | SpDef Training -> "..SpDef_Training[i])
+			log("EV Trainer | SpDef Training -> "..SpDef_Training[i][1])
 		end
 	end
+end
 
+function hasMachoBrace()
+	if getPokemonHeldItem(1) == "Macho Brace" then
+		return true
+	else
+		return false
+	end
+end
+
+
+function getItemFromTeam(itemName)
+	if getPokemonHeldItem(1) ~= itemName then
+		for i = 1, getTeamSize() do
+			if getPokemonHeldItem(i) == itemName then
+				takeItemFromPokemon(i)
+			end
+		end
+	end
+end
+
+
+function isLastTenEvs(EvTable, ev)
+	if getPokemonEffortValue(1, ev) >= ( EvTable[1][2] - 10 ) then
+		return true
+	else
+		return false
+	end
 end

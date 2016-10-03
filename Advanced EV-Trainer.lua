@@ -7,9 +7,7 @@ function onStart()
 	dofile 'config.lua'
 	dofile 'lib/evMap.lua'
 
-
-
-	log("EV Trainer | Version 1.0.1 Release")
+	log("EV Trainer | Version 1.1.2 Release")
 	getStartLogs()
 
 	if autoEvolve == "on" then

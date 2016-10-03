@@ -41,7 +41,7 @@ end
 local function goal(dest)
 	return function(node)
 		if dest == "Pokecenter" then
-			return string.match(node, dest)
+			return string.find(node, dest) or node == "Indigo Plateau Center"
 		else
 			return node == dest
 		end
@@ -63,7 +63,7 @@ local function SolvingException(EMap)
 			for val, func in pairs(DescMaps[index]) do
 				if DescMaps[index][val]() == false then
 					return
-				end 
+				end
 			end
 		end
 	end
@@ -92,7 +92,7 @@ end
 -- FUNCTION NO BULTIN FOR ADD VALUE ON A TABLE
 local function replacepath(startpos, endpos, namexc)
 	local temppath = {}
-	for posS=1,(startpos-1) do	
+	for posS=1,(startpos-1) do
 		table.insert(temppath,PathSolution[posS])
 	end
 	for posex, val in pairs(ExceRouteEdit[namexc][1]) do
@@ -107,7 +107,7 @@ end
 -- EDIT PATH FOR NO EDIT BASIC MAP TABLE
 local function EditPathGenerated()
 	local found = false
-	for val, zone in pairs(PathSolution) do -- for every val in array path 
+	for val, zone in pairs(PathSolution) do -- for every val in array path
 		for valx, exce in pairs(ExceRouteEdit) do -- for every val in exception, based on path, compare
 			if zone == ExceRouteEdit[valx][1][1] then -- if 1 of element is a start of exception- get table length exception
 				found = true
@@ -179,35 +179,35 @@ end
 
 local function MovingApply(ToMap)
 	if lib.useBike() then
-		return	
+		return true
 	elseif CheckException(getMapName(), PathSolution[1]) then
-		return
+		return true
 	else
-		lib.log1time("Maps Remains: " .. lib.tablelength(PathSolution) .. "  Moving To: --> " .. PathSolution[1])	
+		lib.log1time("Maps Remains: " .. lib.tablelength(PathSolution) .. "  Moving To: --> " .. PathSolution[1])
 		if moveToMap(ToMap) then
-			return
+			return true
 		else
 			ResetPath()
 			lib.log1time("Error in Path - Reset and Recalc")
-			swapPokemon(getTeamSize(), getTeamSize()-1)
+			swapPokemon(getTeamSize(), getTeamSize() - 1)
+			return true
 		end
 	end
 end
 
 local function MoveWithCalcPath()
-	if lib.tablelength(PathSolution) > 0 then	
+	if lib.tablelength(PathSolution) > 0 then
 		if PathSolution[1] == getMapName() then
 			table.remove(PathSolution, 1)
 			if lib.tablelength(PathSolution) > 0 then
-				MovingApply(PathSolution[1])
+				return MovingApply(PathSolution[1])
 			end
+			return false
 		else
-			MovingApply(PathSolution[1])
+			return MovingApply(PathSolution[1])
 		end
-		return true
-	else
-		return false
-	end	
+	end
+	return false
 end
 
 
@@ -229,7 +229,7 @@ end
 local function ApplySettings()
 	-- BIKE PATHS
 	if Settings.bike then
-		setLink("Route 18", "Route 17", 1)		
+		setLink("Route 18", "Route 17", 1)
 		setLink("Route 17", "Route 18", 1)
 	else
 		unsetLink("Route 18", "Route 17")
@@ -247,7 +247,7 @@ local function ApplySettings()
 		setLink("Route 31", "Route 45", 1)
 		setLink("Route 45", "Route 31", 1)
 		setLink("Route 33", "Route 32", 1)
-		setLink("Route 32", "Route 33", 1)		
+		setLink("Route 32", "Route 33", 1)
 		setLink("Blackthorn City", "Route 44", 1)
 		setLink("Route 44", "Blackthorn City", 1)
 	else
@@ -261,7 +261,7 @@ local function ApplySettings()
 		unsetLink("Route 31", "Route 45")
 		unsetLink("Route 45", "Route 31")
 		unsetLink("Route 33", "Route 32")
-		unsetLink("Route 32", "Route 33")		
+		unsetLink("Route 32", "Route 33")
 		unsetLink("Blackthorn City", "Route 44")
 		unsetLink("Route 44", "Blackthorn City")
 	end
@@ -271,33 +271,36 @@ end
 local function initSettings()
 	Settings = {}
 	Settings.bike = hasItem("Bicycle")
-	Settings.dig = lib.hasPokemonWithMove("Dig")
+	Settings.dig = lib.getPokemonNumberWithMove("Dig", 155)
+	if Settings.dig == 0 then Settings.dig = false end
 	ApplySettings()
 end
 
 -- MOVETO DEST
 local function MoveTo(Destination)
+	local map = getMapName()
+
 	lib.ifNotThen(Settings, initSettings)
-	if Outlet and checkOutlet(getMapName()) then
+	if Outlet and checkOutlet(map) then
 		return true
 	elseif PathDestStore == Destination then
-		return MoveWithCalcPath()	
+		return MoveWithCalcPath()
 	else
-	 	PathSolution = simpleAStar(goal(Destination))(getMapName())
+		PathSolution = simpleAStar(goal(Destination))(map)
 		if not PathSolution then
 			return fatal("Path Not Found ERROR")
-		end		
+		end
 		PathDestStore = Destination
 		EditPathGenerated()
 		log("Path: " .. table.concat(PathSolution,"->"))
-		return MoveWithCalcPath()	
+		return MoveWithCalcPath()
 	end
 	return false
 end
 
 -- SETTINGS CALLS
 local function EnableBikePath()
-	lib.ifNotThen(Settings, initSettings)	
+	lib.ifNotThen(Settings, initSettings)
 	Settings.bike = true
 	log("BIKE PATH ENABLED")
 	ApplySettings()
@@ -311,14 +314,14 @@ local function DisableBikePath()
 end
 
 local function EnableDigPath()
-	lib.ifNotThen(Settings, initSettings)	
+	lib.ifNotThen(Settings, initSettings)
 	Settings.dig = true
 	log("DIG PATH ENABLED")
 	ApplySettings()
 end
 
 local function DisableDigPath()
-	lib.ifNotThen(Settings, initSettings)	
+	lib.ifNotThen(Settings, initSettings)
 	Settings.dig = false
 	log("DIG PATH DISABLED")
 	ApplySettings()
@@ -329,6 +332,15 @@ local function MoveToPC()
 	return MoveTo("Pokecenter")
 end
 
+local function UseNearestPokecenter()
+    map = getMapName()
+	if string.find(map, "Pokecenter") then
+		return assert(usePokecenter(), "usePokecenter() failed")
+    elseif map == "Indigo Plateau Center" then
+        return assert(talkToNpcOnCell(4, 21), "Failed to talk to Nurse on Cell 4/21")
+	else return MoveToPC()
+	end
+end
 
 local self = {
 ResetPath = ResetPath,
@@ -353,8 +365,9 @@ registerHook("onStop", onPathfinderStop)
 return {
 	MoveTo = MoveTo,
 	MoveToPC = MoveToPC,
+	UseNearestPokecenter = UseNearestPokecenter,
 	EnableBikePath = EnableBikePath,
 	DisableBikePath = DisableBikePath,
 	EnableDigPath = EnableDigPath,
 	DisableDigPath = DisableDigPath,
- }
+}
