@@ -106,11 +106,8 @@ function startTraining(EvTable, EvName, EvShort)
 		if getPokemonName(1) ~= EvTable[1][1] then
 			swapPokemonWithLeader(EvTable[1][1])
 		elseif getPokemonName(1) == EvTable[1][1] and not isEvDone(EvName, EvTable) then
-
 			if not isLastTenEvs(EvTable, EvName) then
-			
 			if hasTeamMachoBrace() or hasItem("Macho Brace") then
-			log("yes we got it")
 				if not hasMachoBrace() then
 					if not hasItem("Macho Brace") then
 						getItemFromTeam("Macho Brace")
@@ -214,7 +211,6 @@ function hasTeamMachoBrace()
 		end
 	end
 	return false
-		
 end
 
 
