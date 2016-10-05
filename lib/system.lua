@@ -108,7 +108,9 @@ function startTraining(EvTable, EvName, EvShort)
 		elseif getPokemonName(1) == EvTable[1][1] and not isEvDone(EvName, EvTable) then
 
 			if not isLastTenEvs(EvTable, EvName) then
-
+			
+			if hasTeamMachoBrace() or hasItem("Macho Brace") then
+			log("yes we got it")
 				if not hasMachoBrace() then
 					if not hasItem("Macho Brace") then
 						getItemFromTeam("Macho Brace")
@@ -117,12 +119,7 @@ function startTraining(EvTable, EvName, EvShort)
 						giveItemToPokemon("Macho Brace", 1)
 						log("EV Trainer | Macho Brace equiped")
 					else
-						log("EV Trainer | Macho Brace not found -> Continue without !")
-						if getMapName() ~= EvShort[1] then
-							PathFinder.MoveTo(EvShort[1])
-						else
-							getLevelSpot(EvShort)
-						end
+						log("error: wtf have i done")
 					end
 				else
 					if getMapName() ~= EvShort[1] then
@@ -131,6 +128,14 @@ function startTraining(EvTable, EvName, EvShort)
 						getLevelSpot(EvShort)
 					end
 				end
+			else
+				log("EV Trainer | Macho Brace not found -> Continue without !")
+				if getMapName() ~= EvShort[1] then
+					PathFinder.MoveTo(EvShort[1])
+				else
+					getLevelSpot(EvShort)
+					end
+			end
 
 			elseif isLastTenEvs(EvTable, EvName) and getPokemonHeldItem(1) == "Macho Brace" then
 				log("EV Trainer | Less then 10 missing EV's -> Removed Macho Brace")
@@ -197,8 +202,19 @@ function hasMachoBrace()
 	if getPokemonHeldItem(1) == "Macho Brace" then
 		return true
 	else
+		log("First pokemon doesn't have macho brace")
 		return false
 	end
+end
+
+function hasTeamMachoBrace()
+	for i = 1, getTeamSize() do
+		if getPokemonHeldItem(i) == "Macho Brace" then
+			return true
+		end
+	end
+	return false
+		
 end
 
 
